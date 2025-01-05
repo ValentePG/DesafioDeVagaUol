@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: desafio-vagauol
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    password: 3030
+    url: jdbc:h2:mem:testedb
+    username: gomes
+  jpa:
+    show-sql: true
+    generate-ddl: true
+
+logging:
+  level:
+    dev.valente: debug
+
+server:
+  error:
+    include-stacktrace: on_param
+  servlet:
+    context-path: /
+  tomcat:
+    threads:
+      max: 20
