@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("v1/jogadores")
 @RequiredArgsConstructor
@@ -17,13 +19,14 @@ public class JogadorController {
     private final JogadorService jogadorService;
 
     @GetMapping
-    public ResponseEntity<Void> getAllJogadores() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<Jogador>> getAllJogadores() {
+        var list = jogadorService.getAllJogadores();
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping
     public ResponseEntity<Jogador> saveJogador(@RequestBody JogadorPostRequest jogador) throws Exception {
-        var novoJogador = new Jogador(jogador.nome(), jogador.email(), jogador.telefone(), jogador.grupoCodinome());
+        var novoJogador = new Jogador(jogador.nome(), jogador.email(), jogador.telefone(), jogador.grupocodinome());
 
         var novojogadorretorno = jogadorService.save(novoJogador);
 
