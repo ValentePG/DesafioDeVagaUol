@@ -10,7 +10,8 @@ spring:
     username: gomes
   jpa:
     show-sql: true
-    generate-ddl: true
+    hibernate:
+      ddl-auto: update
 
 logging:
   level:

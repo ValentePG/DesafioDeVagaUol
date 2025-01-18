@@ -1,4 +1,4 @@
-package dev.valente.desafio_vagauol.config.restclientconfig;
+package dev.valente.desafio_vagauol.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
