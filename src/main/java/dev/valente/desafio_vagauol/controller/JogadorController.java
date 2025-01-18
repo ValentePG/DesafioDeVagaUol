@@ -5,6 +5,7 @@ import dev.valente.desafio_vagauol.dto.jogador.JogadorPostRequest;
 import dev.valente.desafio_vagauol.dto.jogador.JogadorPostResponse;
 import dev.valente.desafio_vagauol.mapper.JogadorMapper;
 import dev.valente.desafio_vagauol.service.JogadorService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,7 @@ public class JogadorController {
     }
 
     @PostMapping
-    public ResponseEntity<JogadorPostResponse> saveJogador(@RequestBody JogadorPostRequest jogador) throws Exception {
+    public ResponseEntity<JogadorPostResponse> saveJogador(@RequestBody @Valid JogadorPostRequest jogador) throws Exception {
         log.debug("Salvando jogador '{}'", jogador);
 
         var novoJogador = jogadorMapper.toJogador(jogador);
