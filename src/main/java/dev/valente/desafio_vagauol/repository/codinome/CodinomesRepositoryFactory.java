@@ -12,9 +12,10 @@ public class CodinomesRepositoryFactory {
     private final VingadoresRepository vingadoresRepository;
 
     public CodinomesRepository create(GrupoCodinome grupoCodinome) {
-          return switch(grupoCodinome) {
-              case LIGA_DA_JUSTICA -> justiceLeagueRepository;
-              case VINGADORES -> vingadoresRepository;
-          };
-    };
+        return switch (grupoCodinome) {
+            case LIGA_DA_JUSTICA -> justiceLeagueRepository;
+            case VINGADORES -> vingadoresRepository;
+        };
+    }
+
 }

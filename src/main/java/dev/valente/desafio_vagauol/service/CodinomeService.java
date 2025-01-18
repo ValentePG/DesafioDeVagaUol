@@ -2,7 +2,6 @@ package dev.valente.desafio_vagauol.service;
 
 
 import dev.valente.desafio_vagauol.model.GrupoCodinome;
-
 import dev.valente.desafio_vagauol.repository.codinome.CodinomesRepositoryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

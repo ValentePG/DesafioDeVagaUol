@@ -6,12 +6,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface JogadorRepository extends JpaRepository<Jogador, Long> {
 
-    @Query(value = "SELECT CODINOME FROM JOGADOR", nativeQuery = true)
-    List<String> findAllCodinomes();
+//    @Query(value = "SELECT CODINOME FROM JOGADOR", nativeQuery = true)
+//    List<String> findAllCodinomes();
 
+    @Query("SELECT jg.codinome FROM Jogador jg")
+    List<String> findAllCodinomes();
 }
