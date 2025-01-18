@@ -1,7 +1,9 @@
 package dev.valente.desafio_vagauol.controller;
 
-import dev.valente.desafio_vagauol.dto.JogadorPostRequest;
-import dev.valente.desafio_vagauol.model.Jogador;
+import dev.valente.desafio_vagauol.dto.jogador.JogadorGetResponse;
+import dev.valente.desafio_vagauol.dto.jogador.JogadorPostRequest;
+import dev.valente.desafio_vagauol.dto.jogador.JogadorPostResponse;
+import dev.valente.desafio_vagauol.mapper.JogadorMapper;
 import dev.valente.desafio_vagauol.service.JogadorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,19 +19,27 @@ import java.util.List;
 public class JogadorController {
 
     private final JogadorService jogadorService;
+    private final JogadorMapper jogadorMapper;
 
     @GetMapping
-    public ResponseEntity<List<Jogador>> getAllJogadores() {
-        var list = jogadorService.getAllJogadores();
-        return ResponseEntity.ok(list);
+    public ResponseEntity<List<JogadorGetResponse>> getAllJogadores() {
+        log.info("Fazendo busca por todos os jogadores");
+
+        var listOfPlayers = jogadorService.getAllJogadores().stream().map(jogadorMapper::toJogadorGetResponse).toList();
+        return ResponseEntity.ok(listOfPlayers);
+
     }
 
     @PostMapping
-    public ResponseEntity<Jogador> saveJogador(@RequestBody JogadorPostRequest jogador) throws Exception {
-        var novoJogador = new Jogador(jogador.nome(), jogador.email(), jogador.telefone(), jogador.grupocodinome());
+    public ResponseEntity<JogadorPostResponse> saveJogador(@RequestBody JogadorPostRequest jogador) throws Exception {
+        log.debug("Salvando jogador '{}'", jogador);
 
-        var novojogadorretorno = jogadorService.save(novoJogador);
+        var novoJogador = jogadorMapper.toJogador(jogador);
 
-        return ResponseEntity.ok(novojogadorretorno);
+        var novoJogadorSalvo = jogadorService.save(novoJogador);
+
+        var postResponse = jogadorMapper.toJogadorPostResponse(novoJogadorSalvo);
+
+        return ResponseEntity.status(201).body(postResponse);
     }
 }

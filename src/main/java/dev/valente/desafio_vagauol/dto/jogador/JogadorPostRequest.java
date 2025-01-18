@@ -1,4 +1,4 @@
-package dev.valente.desafio_vagauol.dto;
+package dev.valente.desafio_vagauol.dto.jogador;
 
 import dev.valente.desafio_vagauol.model.GrupoCodinome;
 

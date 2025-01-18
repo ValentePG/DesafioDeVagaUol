@@ -3,9 +3,11 @@ package dev.valente.desafio_vagauol.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Entity
+@ToString
 @Getter
+@Entity
 public class Jogador {
 
     @Id
@@ -19,6 +21,7 @@ public class Jogador {
     private String telefone;
 
     @Setter
+    @Column(unique = true)
     private String codinome;
 
     @Enumerated(EnumType.STRING)
