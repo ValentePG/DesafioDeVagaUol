@@ -25,7 +25,8 @@ public class JogadorService {
     }
 
     private void gerarCodinome(Jogador jogador) throws Exception {
-        var codinomesUtilizados = jogadoresRepository.findAllCodinomes();
+
+        var codinomesUtilizados = jogadoresRepository.findAllCodinomes(jogador.getGrupoCodinome());
         var codinome = codinomeService.gerarCodinome(jogador.getGrupoCodinome(), codinomesUtilizados);
         jogador.setCodinome(codinome);
     }

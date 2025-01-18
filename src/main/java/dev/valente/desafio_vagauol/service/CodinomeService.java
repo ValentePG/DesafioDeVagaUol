@@ -15,7 +15,10 @@ public class CodinomeService {
     private final CodinomesRepositoryFactory codinomesRepositoryFactory;
 
     public String gerarCodinome(GrupoCodinome groupCodinome, List<String> codinomesEmUso) throws Exception {
+
         var codinomesDispoiniveis = listarCodinomesDisponiveis(groupCodinome, codinomesEmUso);
+
+        // É possível implementar cache aqui
 
         if (codinomesDispoiniveis.isEmpty()) {
             throw new Exception("Não há codinomes disponíveis para o grupo " + groupCodinome.getGroupName());

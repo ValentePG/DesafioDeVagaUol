@@ -1,12 +1,13 @@
 package dev.valente.desafio_vagauol.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Jogador {
 
@@ -25,6 +26,7 @@ public class Jogador {
     private String codinome;
 
     @Enumerated(EnumType.STRING)
+    @Setter
     private GrupoCodinome grupoCodinome;
 
     public Jogador(String nome, String email, String telefone, GrupoCodinome grupoCodinome) {
@@ -34,9 +36,5 @@ public class Jogador {
         this.grupoCodinome = grupoCodinome;
     }
 
-
-    public Jogador() {
-
-    }
 
 }
