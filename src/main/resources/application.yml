@@ -25,3 +25,8 @@ server:
   tomcat:
     threads:
       max: 20
+
+external:
+  url: https://raw.githubusercontent.com/uolhost/test-backEnd-Java/master/referencias
+  uri-liga-da-justica: /liga_da_justica.xml
+  uri-vingadores: /vingadores.json

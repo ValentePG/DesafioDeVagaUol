@@ -1,25 +1,27 @@
 package dev.valente.desafio_vagauol.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestClient;
 
 @Configuration
+@RequiredArgsConstructor
 public class RestClientConfig {
 
-    private static final String URL = "https://raw.githubusercontent.com/uolhost/test-backEnd-Java/master/referencias";
+    private final Properties properties;
 
     @Bean
     public RestClient vingadoresJson() {
         return RestClient.builder()
-                .baseUrl(URL + "/vingadores.json")
+                .baseUrl(properties.url() + properties.uri_vingadores())
                 .build();
     }
 
     @Bean
     public RestClient justiceLeagueXml() {
         return RestClient.builder()
-                .baseUrl(URL + "/liga_da_justica.xml")
+                .baseUrl(properties.url() + properties.uri_liga_da_justica())
                 .build();
     }
 }
