@@ -21,7 +21,7 @@ public class RestClientConfig {
     @Bean
     public RestClient justiceLeagueXml() {
         return RestClient.builder()
-                .baseUrl(properties.url() + properties.uri_liga_da_justica())
+                .baseUrl(properties.url() + properties.uriLigaDaJustica())
                 .build();
     }
 }
