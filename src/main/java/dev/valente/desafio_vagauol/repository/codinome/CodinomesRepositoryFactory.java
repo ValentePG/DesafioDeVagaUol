@@ -1,6 +1,8 @@
 package dev.valente.desafio_vagauol.repository.codinome;
 
 import dev.valente.desafio_vagauol.domain.GrupoCodinome;
+import dev.valente.desafio_vagauol.repository.api.LigaDaJusticaRepository;
+import dev.valente.desafio_vagauol.repository.api.VingadoresRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

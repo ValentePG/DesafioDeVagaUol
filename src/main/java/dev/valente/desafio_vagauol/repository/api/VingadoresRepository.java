@@ -1,9 +1,10 @@
-package dev.valente.desafio_vagauol.repository.codinome;
+package dev.valente.desafio_vagauol.repository.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.valente.desafio_vagauol.dto.vingadoresdto.Vingadores;
 import dev.valente.desafio_vagauol.dto.vingadoresdto.VingadoresDTO;
+import dev.valente.desafio_vagauol.repository.codinome.CodinomesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestClient;
