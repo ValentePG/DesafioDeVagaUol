@@ -1,4 +1,4 @@
-package dev.valente.desafio_vagauol.model;
+package dev.valente.desafio_vagauol.domain;
 
 import lombok.Getter;
 

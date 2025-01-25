@@ -1,5 +1,6 @@
 package dev.valente.desafio_vagauol.config;
 
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,19 +10,18 @@ import org.springframework.web.client.RestClient;
 @RequiredArgsConstructor
 public class RestClientConfig {
 
-    private final Properties properties;
+    private final Propriedades propriedades;
 
     @Bean
-    public RestClient vingadoresJson() {
+    public RestClient.Builder vingadoresJson() {
         return RestClient.builder()
-                .baseUrl(properties.url() + properties.uri_vingadores())
-                .build();
+                .baseUrl(propriedades.url() + propriedades.uriVingadores());
     }
 
     @Bean
-    public RestClient justiceLeagueXml() {
+    public RestClient.Builder ligaDaJusticaXml() {
         return RestClient.builder()
-                .baseUrl(properties.url() + properties.uriLigaDaJustica())
-                .build();
+                .baseUrl(propriedades.url() + propriedades.uriLigaDaJustica());
     }
+
 }

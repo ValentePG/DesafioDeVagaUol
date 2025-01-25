@@ -23,21 +23,21 @@ public class JogadorController {
     private final JogadorMapper jogadorMapper;
 
     @GetMapping
-    public ResponseEntity<List<JogadorGetResponse>> getAllJogadores() {
+    public ResponseEntity<List<JogadorGetResponse>> buscarJogadores() {
         log.info("Fazendo busca por todos os jogadores");
 
-        var listOfPlayers = jogadorService.getAllJogadores().stream().map(jogadorMapper::toJogadorGetResponse).toList();
+        var listOfPlayers = jogadorService.buscarJogadores().stream().map(jogadorMapper::toJogadorGetResponse).toList();
         return ResponseEntity.ok(listOfPlayers);
 
     }
 
     @PostMapping
-    public ResponseEntity<JogadorPostResponse> saveJogador(@RequestBody @Valid JogadorPostRequest jogador) throws Exception {
+    public ResponseEntity<JogadorPostResponse> criarJogador(@RequestBody @Valid JogadorPostRequest jogador) throws Exception {
         log.debug("Salvando jogador '{}'", jogador);
 
         var novoJogador = jogadorMapper.toJogador(jogador);
 
-        var novoJogadorSalvo = jogadorService.save(novoJogador);
+        var novoJogadorSalvo = jogadorService.salvarJogador(novoJogador);
 
         var postResponse = jogadorMapper.toJogadorPostResponse(novoJogadorSalvo);
 

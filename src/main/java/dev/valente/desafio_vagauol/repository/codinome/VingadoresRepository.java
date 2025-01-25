@@ -14,18 +14,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class VingadoresRepository implements CodinomesRepository {
 
-    private final RestClient vingadoresJson;
+    private final RestClient.Builder vingadoresJson;
+    private final ObjectMapper objectMapper;
 
     @Override
-    public List<String> getCodinomes() throws JsonProcessingException {
-        var json = vingadoresJson.get()
+    public List<String> buscarCodinomes() throws JsonProcessingException {
+        var jsonResponse = vingadoresJson.build().get()
                 .retrieve()
                 .body(String.class);
 
-        var objectMapper = new ObjectMapper();
+        var vingadoresDTO = objectMapper.readValue(jsonResponse, VingadoresDTO.class);
 
-        var jsonVingadores = objectMapper.readValue(json, VingadoresDTO.class);
-
-        return jsonVingadores.vingadores().stream().map(Vingadores::getCodinome).toList();
+        return vingadoresDTO.vingadores().stream().map(Vingadores::getCodinome).toList();
     }
 }

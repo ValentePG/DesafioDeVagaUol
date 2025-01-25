@@ -1,7 +1,9 @@
-package dev.valente.desafio_vagauol.model;
+package dev.valente.desafio_vagauol.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import javax.print.attribute.standard.MediaSize;
 
 @ToString
 @Getter
@@ -9,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "tbl_jogador")
 public class Jogador {
 
     @Id
@@ -16,7 +19,7 @@ public class Jogador {
     private Long id;
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     private String telefone;
@@ -28,13 +31,6 @@ public class Jogador {
     @Enumerated(EnumType.STRING)
     @Setter
     private GrupoCodinome grupoCodinome;
-
-    public Jogador(String nome, String email, String telefone, GrupoCodinome grupoCodinome) {
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.grupoCodinome = grupoCodinome;
-    }
 
 
 }

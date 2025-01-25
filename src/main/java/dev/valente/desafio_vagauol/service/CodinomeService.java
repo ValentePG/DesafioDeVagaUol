@@ -1,7 +1,8 @@
 package dev.valente.desafio_vagauol.service;
 
 
-import dev.valente.desafio_vagauol.model.GrupoCodinome;
+import dev.valente.desafio_vagauol.domain.GrupoCodinome;
+import dev.valente.desafio_vagauol.exception.NotFoundException;
 import dev.valente.desafio_vagauol.repository.codinome.CodinomesRepositoryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,17 +15,13 @@ public class CodinomeService {
 
     private final CodinomesRepositoryFactory codinomesRepositoryFactory;
 
-    public String gerarCodinome(GrupoCodinome groupCodinome, List<String> codinomesEmUso) throws Exception {
+    public String gerarCodinome(GrupoCodinome grupoCodinome, List<String> codinomesEmUso) throws Exception {
 
-        var codinomesDispoiniveis = listarCodinomesDisponiveis(groupCodinome, codinomesEmUso);
+        var codinomesDisponiveis = listarCodinomesDisponiveis(grupoCodinome, codinomesEmUso);
 
-        // É possível implementar cache aqui
+        assertListIsNotEmpty(codinomesDisponiveis, grupoCodinome);
 
-        if (codinomesDispoiniveis.isEmpty()) {
-            throw new Exception("Não há codinomes disponíveis para o grupo " + groupCodinome.getGroupName());
-        }
-
-        return sortearCodinome(codinomesDispoiniveis);
+        return sortearCodinome(codinomesDisponiveis);
     }
 
     private List<String> listarCodinomesDisponiveis(GrupoCodinome grupoCodinome, List<String> codinomesEmUso) throws Exception {
@@ -38,10 +35,18 @@ public class CodinomeService {
     private List<String> buscarCodinomes(GrupoCodinome grupoCodinome) throws Exception {
         var codinomes = codinomesRepositoryFactory.create(grupoCodinome);
 
-        return codinomes.getCodinomes();
+        return codinomes.buscarCodinomes();
     }
 
-    private String sortearCodinome(List<String> codinomesDisponiveis) throws Exception {
-        return codinomesDisponiveis.stream().findAny().get();
+    private String sortearCodinome(List<String> codinomesDisponiveis) {
+        return codinomesDisponiveis.stream().findAny().orElse("");
+    }
+
+    private void assertListIsNotEmpty(List<String> codinomesDisponiveis, GrupoCodinome grupoCodinome){
+        if (codinomesDisponiveis.isEmpty()) throwNotFoundException(grupoCodinome);
+    }
+
+    private void throwNotFoundException(GrupoCodinome grupoCodinome) throws NotFoundException {
+        throw new NotFoundException("Não há codinomes disponíveis para o grupo " + grupoCodinome.getGroupName());
     }
 }

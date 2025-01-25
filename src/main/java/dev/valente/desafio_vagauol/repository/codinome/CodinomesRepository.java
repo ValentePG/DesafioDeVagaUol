@@ -6,5 +6,5 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.List;
 
 public interface CodinomesRepository {
-    List<String> getCodinomes() throws JsonProcessingException;
+    List<String> buscarCodinomes() throws JsonProcessingException;
 }
