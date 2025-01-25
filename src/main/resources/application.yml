@@ -6,7 +6,7 @@ spring:
       enabled: true
   datasource:
     password: 3030
-    url: jdbc:h2:mem:testedb
+    url: jdbc:h2:mem:proddb
     username: gomes
   jpa:
     show-sql: true

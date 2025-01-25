@@ -10,6 +10,7 @@ import javax.print.attribute.standard.MediaSize;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "tbl_jogador")
 public class Jogador {
