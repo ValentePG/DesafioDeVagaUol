@@ -113,11 +113,11 @@ class JogadorServiceTest {
                 .withMessage("400 BAD_REQUEST \"Email já cadastrado no sistema\"")
                 .isInstanceOf(EmailAlreadyExist.class);
 
-        BDDMockito.verify(jogadorRepository, BDDMockito.atMost(1));
         BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
                 .findByEmail(emailFromJogadorToSave);
 
-        BDDMockito.verify(codinomeService, BDDMockito.times(0));
+        BDDMockito.verifyNoMoreInteractions(jogadorRepository, codinomeService);
+
 
     }
 
@@ -134,11 +134,20 @@ class JogadorServiceTest {
                 .when(codinomeService).gerarCodinome(grupoCodinomeFromJogadorToSave, Collections.emptyList());
 
         Assertions.assertThatException()
-                .isThrownBy(() -> codinomeService.gerarCodinome(grupoCodinomeFromJogadorToSave,
-                        Collections.emptyList()))
+                .isThrownBy(() -> jogadorService.salvarJogador(jogadorToSave))
                 .withMessage("404 NOT_FOUND \"Não há codinomes disponíveis para o grupo %s\""
                         .formatted(grupoCodinomeFromJogadorToSave.getGroupName()))
                 .isInstanceOf(NotFoundException.class);
+
+        BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
+                .findByEmail(BDDMockito.any());
+        BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
+                .findAllCodinomes(BDDMockito.any());
+
+        BDDMockito.verify(codinomeService, BDDMockito.times(1))
+                .gerarCodinome(grupoCodinomeFromJogadorToSave, Collections.emptyList());
+
+        BDDMockito.verifyNoMoreInteractions(jogadorRepository, codinomeService);
     }
 
 }
