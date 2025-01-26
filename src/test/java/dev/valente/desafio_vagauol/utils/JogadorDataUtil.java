@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class JogadorDataUtil {
 
+    public static final String EMAIL_FROM_JOGADOR_TO_SAVE = "gabriel@gmail.com";
+    public static final GrupoCodinome GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE = GrupoCodinome.VINGADORES;
+    public static final Long ID_FROM_JOGADOR_SAVED = 1L;
+
     public Jogador getJogadorToSave(){
         return Jogador.builder()
                 .email("gabriel@gmail.com")
