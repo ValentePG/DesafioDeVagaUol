@@ -4,9 +4,22 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class CodinomeVingadoresDataUtil implements CodinomeInterface{
+
+    private static CodinomeVingadoresDataUtil instance;
+
+    public static CodinomeVingadoresDataUtil getInstance(){
+        if(Objects.isNull(instance)){
+            instance = new CodinomeVingadoresDataUtil();
+        }
+        return instance;
+    }
+
+    private CodinomeVingadoresDataUtil() {
+    }
 
     public static final List<String> LIST_OF_CODINOMES_VINGADORES =
             new ArrayList<>(List.of("Hulk", "Homem de ferro", "Capitão América"));

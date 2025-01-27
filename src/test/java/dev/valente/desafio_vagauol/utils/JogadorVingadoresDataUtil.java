@@ -4,8 +4,22 @@ import dev.valente.desafio_vagauol.domain.GrupoCodinome;
 import dev.valente.desafio_vagauol.domain.Jogador;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class JogadorVingadoresDataUtil implements JogadorInterface {
+
+    private static JogadorVingadoresDataUtil instance;
+
+    public static JogadorVingadoresDataUtil getInstance(){
+        if(Objects.isNull(instance)){
+            instance = new JogadorVingadoresDataUtil();
+        }
+        return instance;
+    }
+
+    private JogadorVingadoresDataUtil() {
+    }
 
     public static final Jogador JOGADOR_TO_SAVE = Jogador.builder()
             .email("gabriel@gmail.com")

@@ -1,9 +1,26 @@
 package dev.valente.desafio_vagauol.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+@Component
 public class CodinomeLigaDaJusticaDataUtil implements CodinomeInterface{
+
+    private static CodinomeLigaDaJusticaDataUtil instance;
+
+    public static CodinomeLigaDaJusticaDataUtil getInstance(){
+        if(Objects.isNull(instance)){
+            instance = new CodinomeLigaDaJusticaDataUtil();
+        }
+        return instance;
+    }
+
+    private CodinomeLigaDaJusticaDataUtil() {
+    }
+
     public static final List<String> LIST_OF_CODINOMES_LIGA_DA_JUSTICA =
             new ArrayList<>(List.of("Batman", "Mulher Maravilha", "Flash"));
 
