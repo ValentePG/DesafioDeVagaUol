@@ -5,11 +5,8 @@ import dev.valente.desafio_vagauol.domain.Jogador;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JogadorDataUtil {
+public class JogadorVingadoresDataUtil implements JogadorInterface {
 
-    public static final String EMAIL_FROM_JOGADOR_TO_SAVE = "gabriel@gmail.com";
-    public static final GrupoCodinome GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE = GrupoCodinome.VINGADORES;
-    public static final Long ID_FROM_JOGADOR_SAVED = 1L;
     public static final Jogador JOGADOR_TO_SAVE = Jogador.builder()
             .email("gabriel@gmail.com")
             .grupoCodinome(GrupoCodinome.VINGADORES)
@@ -24,12 +21,33 @@ public class JogadorDataUtil {
             .codinome("Hulk")
             .id(1L)
             .build();
+    public static final String EMAIL_FROM_JOGADOR_TO_SAVE = "gabriel@gmail.com";
+    public static final Long ID_FROM_JOGADOR_SAVED = 1L;
+    public static final GrupoCodinome GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE
+            = JOGADOR_TO_SAVE.getGrupoCodinome();
 
-    public Jogador getJogadorToSave(){
+    @Override
+    public Jogador getJogadorToSave() {
         return JOGADOR_TO_SAVE;
     }
 
-    public Jogador getJogadorSavedWithId(){
+    @Override
+    public Jogador getJogadorSavedWithId() {
         return JOGADOR_SAVED_WITH_ID;
+    }
+
+    @Override
+    public String getEmailFromJogadorToSave() {
+        return EMAIL_FROM_JOGADOR_TO_SAVE;
+    }
+
+    @Override
+    public Long getIdFromJogadorSaved() {
+        return ID_FROM_JOGADOR_SAVED;
+    }
+
+    @Override
+    public GrupoCodinome getGrupoCodinomeFromJogadorToSave() {
+        return GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE;
     }
 }
