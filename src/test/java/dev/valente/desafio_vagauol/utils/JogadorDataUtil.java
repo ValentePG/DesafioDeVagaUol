@@ -10,24 +10,26 @@ public class JogadorDataUtil {
     public static final String EMAIL_FROM_JOGADOR_TO_SAVE = "gabriel@gmail.com";
     public static final GrupoCodinome GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE = GrupoCodinome.VINGADORES;
     public static final Long ID_FROM_JOGADOR_SAVED = 1L;
+    public static final Jogador JOGADOR_TO_SAVE = Jogador.builder()
+            .email("gabriel@gmail.com")
+            .grupoCodinome(GrupoCodinome.VINGADORES)
+            .nome("Gabriel")
+            .telefone("33333333")
+            .build();
+    public static final Jogador JOGADOR_SAVED_WITH_ID = Jogador.builder()
+            .email("gabriel@gmail.com")
+            .nome("Gabriel")
+            .telefone("33333333")
+            .grupoCodinome(GrupoCodinome.VINGADORES)
+            .codinome("Hulk")
+            .id(1L)
+            .build();
 
     public Jogador getJogadorToSave(){
-        return Jogador.builder()
-                .email("gabriel@gmail.com")
-                .nome("Gabriel")
-                .telefone("33333333")
-                .grupoCodinome(GrupoCodinome.VINGADORES)
-                .build();
+        return JOGADOR_TO_SAVE;
     }
 
     public Jogador getJogadorSavedWithId(){
-        return Jogador.builder()
-                .email("gabriel@gmail.com")
-                .nome("Gabriel")
-                .telefone("33333333")
-                .grupoCodinome(GrupoCodinome.VINGADORES)
-                .codinome("Hulk")
-                .id(1L)
-                .build();
+        return JOGADOR_SAVED_WITH_ID;
     }
 }

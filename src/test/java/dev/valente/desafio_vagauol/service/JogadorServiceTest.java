@@ -43,18 +43,16 @@ class JogadorServiceTest {
     @DisplayName("salvarJogador deve salvar e retornar o jogador salvo")
     @Order(1)
     void salvarJogador_shouldSaveAndReturnJogador_WhenSuccessfull() throws Exception {
-        var jogadorToSave = jogadorDataUtil.getJogadorToSave();
 
         arrangeForSuccessfullTest();
 
-        var sut = jogadorService.salvarJogador(jogadorToSave);
+        var sut = jogadorService.salvarJogador(JOGADOR_TO_SAVE);
 
         assertionsForSuccessfullTest(sut);
 
     }
 
     private void arrangeForSuccessfullTest() throws Exception {
-        var jogadorSaved = jogadorDataUtil.getJogadorSavedWithId();
 
         BDDMockito.when(jogadorRepository.findAllCodinomes(BDDMockito.any(GrupoCodinome.class)))
                 .thenReturn(LIST_OF_CODINOMES);
@@ -65,16 +63,14 @@ class JogadorServiceTest {
         BDDMockito.when(codinomeService.gerarCodinome(GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE, LIST_OF_CODINOMES))
                 .thenReturn(FIRST_OF_LIST);
 
-        BDDMockito.when(jogadorRepository.save(BDDMockito.any(Jogador.class))).thenReturn(jogadorSaved);
+        BDDMockito.when(jogadorRepository.save(BDDMockito.any(Jogador.class))).thenReturn(JOGADOR_SAVED_WITH_ID);
     }
 
     private void assertionsForSuccessfullTest(Jogador sut) throws Exception {
-        var listOfCodinomes = codinomeDataUtil.getListOfCodinomes();
-        var firstOfListOfCodinomes = listOfCodinomes.getFirst();
 
         Assertions.assertThat(sut)
                 .hasFieldOrPropertyWithValue("id", ID_FROM_JOGADOR_SAVED)
-                .hasFieldOrPropertyWithValue("codinome", firstOfListOfCodinomes)
+                .hasFieldOrPropertyWithValue("codinome", FIRST_OF_LIST)
                 .hasNoNullFieldsOrProperties();
 
         BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
@@ -86,7 +82,7 @@ class JogadorServiceTest {
 
 
         BDDMockito.verify(codinomeService, BDDMockito.times(1))
-                .gerarCodinome(GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE, listOfCodinomes);
+                .gerarCodinome(GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE, LIST_OF_CODINOMES);
         BDDMockito.verifyNoMoreInteractions(jogadorRepository, codinomeService);
     }
 
@@ -96,15 +92,12 @@ class JogadorServiceTest {
     @Order(2)
     void salvarJogador_shouldReturnEmailAlreadyExists_WhenEmailWasFound() throws Exception {
 
-        var jogadorToSave = jogadorDataUtil.getJogadorToSave();
-
-        var jogadorSaved = jogadorDataUtil.getJogadorSavedWithId();
 
         BDDMockito.when(jogadorRepository.findByEmail(EMAIL_FROM_JOGADOR_TO_SAVE))
-                .thenReturn(Optional.of(jogadorSaved));
+                .thenReturn(Optional.of(JOGADOR_TO_SAVE));
 
         Assertions.assertThatException()
-                .isThrownBy(() -> jogadorService.salvarJogador(jogadorToSave))
+                .isThrownBy(() -> jogadorService.salvarJogador(JOGADOR_TO_SAVE))
                 .withMessage("400 BAD_REQUEST \"Email já cadastrado no sistema\"")
                 .isInstanceOf(EmailAlreadyExist.class);
 
@@ -121,14 +114,13 @@ class JogadorServiceTest {
     @Order(3)
     void salvarJogador_shouldReturnNotFoundException_WhenListOfCodinomeIsEmpty() throws Exception {
 
-        var jogadorToSave = jogadorDataUtil.getJogadorToSave();
 
         BDDMockito.doThrow(new NotFoundException("Não há codinomes disponíveis para o grupo " +
                         GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE.getGroupName()))
                 .when(codinomeService).gerarCodinome(GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE, Collections.emptyList());
 
         Assertions.assertThatException()
-                .isThrownBy(() -> jogadorService.salvarJogador(jogadorToSave))
+                .isThrownBy(() -> jogadorService.salvarJogador(JOGADOR_TO_SAVE))
                 .withMessage("404 NOT_FOUND \"Não há codinomes disponíveis para o grupo %s\""
                         .formatted(GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE.getGroupName()))
                 .isInstanceOf(NotFoundException.class);
