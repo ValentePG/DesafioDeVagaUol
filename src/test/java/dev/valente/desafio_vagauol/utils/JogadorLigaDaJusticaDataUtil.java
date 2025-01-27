@@ -20,8 +20,8 @@ public class JogadorLigaDaJusticaDataUtil implements JogadorInterface {
             .codinome("Batman")
             .id(1L)
             .build();
-    public static final String EMAIL_FROM_JOGADOR_TO_SAVE = "gabriel@gmail.com";
-    public static final Long ID_FROM_JOGADOR_SAVED = 1L;
+    public static final String EMAIL_FROM_JOGADOR_TO_SAVE = JOGADOR_TO_SAVE.getEmail();
+    public static final Long ID_FROM_JOGADOR_SAVED = JOGADOR_SAVED_WITH_ID.getId();
     public static final GrupoCodinome GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE
             = JOGADOR_TO_SAVE.getGrupoCodinome();
 
