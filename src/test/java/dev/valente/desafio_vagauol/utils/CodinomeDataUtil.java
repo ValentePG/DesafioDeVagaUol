@@ -11,7 +11,7 @@ public class CodinomeDataUtil {
     public static final List<String> LIST_OF_CODINOMES =
             new ArrayList<>(List.of("Hulk", "Homem de ferro", "Capitão América"));
 
-    public static final String FIRST_OF_LIST = "Hulk";
+    public static final String FIRST_CODINOME_OF_LIST = "Hulk";
 
     public List<String> getListOfCodinomes(){
         return LIST_OF_CODINOMES;

@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collections;
 import java.util.Optional;
 
-import static dev.valente.desafio_vagauol.utils.CodinomeDataUtil.FIRST_OF_LIST;
+import static dev.valente.desafio_vagauol.utils.CodinomeDataUtil.FIRST_CODINOME_OF_LIST;
 import static dev.valente.desafio_vagauol.utils.CodinomeDataUtil.LIST_OF_CODINOMES;
 import static dev.valente.desafio_vagauol.utils.JogadorDataUtil.*;
 
@@ -61,7 +61,7 @@ class JogadorServiceTest {
                 .thenReturn(Optional.empty());
 
         BDDMockito.when(codinomeService.gerarCodinome(GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE, LIST_OF_CODINOMES))
-                .thenReturn(FIRST_OF_LIST);
+                .thenReturn(FIRST_CODINOME_OF_LIST);
 
         BDDMockito.when(jogadorRepository.save(BDDMockito.any(Jogador.class))).thenReturn(JOGADOR_SAVED_WITH_ID);
     }
@@ -70,7 +70,7 @@ class JogadorServiceTest {
 
         Assertions.assertThat(sut)
                 .hasFieldOrPropertyWithValue("id", ID_FROM_JOGADOR_SAVED)
-                .hasFieldOrPropertyWithValue("codinome", FIRST_OF_LIST)
+                .hasFieldOrPropertyWithValue("codinome", FIRST_CODINOME_OF_LIST)
                 .hasNoNullFieldsOrProperties();
 
         BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
