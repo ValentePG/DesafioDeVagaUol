@@ -6,9 +6,22 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class JogadoresDataUtil {
+
+    private static JogadoresDataUtil instance;
+
+    public static JogadoresDataUtil getInstance(){
+        if(Objects.isNull(instance)){
+            instance = new JogadoresDataUtil();
+        }
+        return instance;
+    }
+
+    private JogadoresDataUtil() {
+    }
 
     private static final Jogador JOGADOR1 = Jogador.builder()
             .email("gabriel@gmail.com")
@@ -45,5 +58,9 @@ public class JogadoresDataUtil {
 
     public static final List<Jogador> LIST_OF_JOGADORES =
             new ArrayList<>(List.of(JOGADOR1,JOGADOR2,JOGADOR3,JOGADOR4));
+
+    public List<Jogador> getListOfJogadores() {
+        return LIST_OF_JOGADORES;
+    }
 
 }

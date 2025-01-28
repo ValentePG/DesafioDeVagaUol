@@ -33,16 +33,16 @@ public class CodinomeService {
     }
 
     private List<String> buscarCodinomes(GrupoCodinome grupoCodinome) throws Exception {
-        var codinomes = codinomesRepositoryFactory.create(grupoCodinome);
+        var codinomesRepository = codinomesRepositoryFactory.create(grupoCodinome);
 
-        return codinomes.buscarCodinomes();
+        return codinomesRepository.buscarCodinomes();
     }
 
     private String sortearCodinome(List<String> codinomesDisponiveis) {
         return codinomesDisponiveis.stream().findAny().orElse("");
     }
 
-    private void assertListIsNotEmpty(List<String> codinomesDisponiveis, GrupoCodinome grupoCodinome){
+    private void assertListIsNotEmpty(List<String> codinomesDisponiveis, GrupoCodinome grupoCodinome) {
         if (codinomesDisponiveis.isEmpty()) throwNotFoundException(grupoCodinome);
     }
 

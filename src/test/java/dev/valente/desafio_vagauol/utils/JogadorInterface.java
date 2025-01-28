@@ -7,7 +7,7 @@ public interface JogadorInterface {
 
      Jogador getJogadorToSave();
      Jogador getJogadorSavedWithId();
-     String getEmailFromJogadorToSave();
-     Long getIdFromJogadorSaved();
-     GrupoCodinome getGrupoCodinomeFromJogadorToSave();
+     String getEmailFromJogador();
+     Long getIdFromJogador();
+     GrupoCodinome getGrupoCodinomeFromJogador();
 }

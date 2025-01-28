@@ -6,7 +6,6 @@ import dev.valente.desafio_vagauol.exception.EmailAlreadyExist;
 import dev.valente.desafio_vagauol.exception.NotFoundException;
 import dev.valente.desafio_vagauol.repository.jogador.JogadorRepository;
 import dev.valente.desafio_vagauol.utils.*;
-import lombok.RequiredArgsConstructor;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,7 +60,6 @@ class JogadorServiceTest {
         var sut = jogadorService.buscarJogadores();
 
         Assertions.assertThat(sut)
-
                 .isEmpty();
     }
 
@@ -101,10 +99,10 @@ class JogadorServiceTest {
         BDDMockito.when(jogadorRepository.findAllCodinomes(BDDMockito.any(GrupoCodinome.class)))
                 .thenReturn(codinomeUtil.getListOfCodinomes());
 
-        BDDMockito.when(jogadorRepository.findByEmail(jogadorUtil.getEmailFromJogadorToSave()))
+        BDDMockito.when(jogadorRepository.findByEmail(jogadorUtil.getEmailFromJogador()))
                 .thenReturn(Optional.empty());
 
-        BDDMockito.when(codinomeService.gerarCodinome(jogadorUtil.getGrupoCodinomeFromJogadorToSave(),
+        BDDMockito.when(codinomeService.gerarCodinome(jogadorUtil.getGrupoCodinomeFromJogador(),
                         codinomeUtil.getListOfCodinomes()))
                 .thenReturn(codinomeUtil.getFirstCodinome());
 
@@ -114,10 +112,10 @@ class JogadorServiceTest {
 
     private void assertionsForSalvarJogadorSuccessfullTest(Jogador sut, JogadorInterface jogadorUtil,
                                                            CodinomeInterface codinomeUtil) throws Exception {
-        var idFromSavedJogador = jogadorUtil.getIdFromJogadorSaved();
+        var idFromSavedJogador = jogadorUtil.getIdFromJogador();
         var firstCodinome = codinomeUtil.getFirstCodinome();
-        var emailFromJogadorToSave = jogadorUtil.getEmailFromJogadorToSave();
-        var grupoCodinomeFromJogadorToSave = jogadorUtil.getGrupoCodinomeFromJogadorToSave();
+        var emailFromJogadorToSave = jogadorUtil.getEmailFromJogador();
+        var grupoCodinomeFromJogadorToSave = jogadorUtil.getGrupoCodinomeFromJogador();
         var listOfCodinomes = codinomeUtil.getListOfCodinomes();
 
         Assertions.assertThat(sut)
@@ -168,8 +166,8 @@ class JogadorServiceTest {
     @Order(5)
     void salvarJogador_shouldReturnNotFoundException_WhenListOfCodinomeIsEmpty(JogadorInterface jogadorUtil) throws Exception {
 
-        var grupoCodinome = jogadorUtil.getGrupoCodinomeFromJogadorToSave();
-        var nomeDoGrupo = jogadorUtil.getGrupoCodinomeFromJogadorToSave().getGroupName();
+        var grupoCodinome = jogadorUtil.getGrupoCodinomeFromJogador();
+        var nomeDoGrupo = jogadorUtil.getGrupoCodinomeFromJogador().getGroupName();
         var jogadorToSave = jogadorUtil.getJogadorToSave();
 
         var notFoundException = new NotFoundException("Não há codinomes disponíveis para o grupo " +
@@ -196,6 +194,7 @@ class JogadorServiceTest {
 
         BDDMockito.verifyNoMoreInteractions(jogadorRepository, codinomeService);
     }
+
 
     private static Stream<Arguments> parameterizedSalvarJogadorWhenListOfCodinomeIsEmpty() {
         var instanceOfJogadorVingadoresDataUtil = JogadorVingadoresDataUtil.getInstance();

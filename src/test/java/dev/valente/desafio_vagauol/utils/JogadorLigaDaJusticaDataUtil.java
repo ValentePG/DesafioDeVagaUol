@@ -53,17 +53,17 @@ public class JogadorLigaDaJusticaDataUtil implements JogadorInterface {
     }
 
     @Override
-    public String getEmailFromJogadorToSave() {
+    public String getEmailFromJogador() {
         return EMAIL_FROM_JOGADOR_TO_SAVE;
     }
 
     @Override
-    public Long getIdFromJogadorSaved() {
+    public Long getIdFromJogador() {
         return ID_FROM_JOGADOR_SAVED;
     }
 
     @Override
-    public GrupoCodinome getGrupoCodinomeFromJogadorToSave() {
+    public GrupoCodinome getGrupoCodinomeFromJogador() {
         return GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE;
     }
 }
