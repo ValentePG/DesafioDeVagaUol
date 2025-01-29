@@ -46,18 +46,24 @@ public class CodinomesApiLigaDaJusticaTest {
     @Order(1)
     void getCodinomes_ShouldReturnListOfCodinomes_WhenSuccessfull() throws JsonProcessingException {
 
+        // Bind do restClient utilizado
         server = MockRestServiceServer.bindTo(ligaDaJusticaXml).build();
 
-        var xmlMapper = new XmlMapper();
 
-        var ligaDaJusticaDTO = xmlMapper.writeValueAsString(LIGA_DA_JUSTICA_DTO);
-
+        // URL da requisição esperada pelo servidor
         var requestTo = MockRestRequestMatchers
                 .requestToUriTemplate(propriedades.url() +
                         propriedades.uriLigaDaJustica());
 
 
-        var withSuccess = MockRestResponseCreators.withSuccess(ligaDaJusticaDTO, MediaType.APPLICATION_JSON);
+        // O restClient retorna um xml string e será transformado em LigaDaJusticaDTO
+        var xmlMapper = new XmlMapper();
+
+        var ligaDaJusticaDTO = xmlMapper.writeValueAsString(LIGA_DA_JUSTICA_DTO);
+
+        // Mock do resultado completo da requisição
+
+        var withSuccess = MockRestResponseCreators.withSuccess(ligaDaJusticaDTO, MediaType.TEXT_XML);
 
         server.expect(requestTo).andRespond(withSuccess);
 

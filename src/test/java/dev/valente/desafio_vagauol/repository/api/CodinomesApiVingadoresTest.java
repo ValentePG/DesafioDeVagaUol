@@ -25,7 +25,7 @@ import static dev.valente.desafio_vagauol.utils.CodinomeVingadoresDataUtil.VINGA
 public class CodinomesApiVingadoresTest {
 
     @Autowired
-    private VingadoresRepository vingadores;
+    private VingadoresRepository vingadoresRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -49,20 +49,27 @@ public class CodinomesApiVingadoresTest {
     @Order(1)
     void getCodinomes_ShouldReturnListOfCodinomes_WhenSuccessfull() throws JsonProcessingException {
 
+        // Bind do restClient utilizado
+
         server = MockRestServiceServer.bindTo(vingadoresJson).build();
 
-        var vingadoresDTO = objectMapper.writeValueAsString(VINGADORES_DTO);
+        // URL da requisição esperada pelo servidor
 
         var requestTo = MockRestRequestMatchers
                 .requestToUriTemplate(propriedades.url() +
                         propriedades.uriVingadores());
 
+        // O restClient retorna um json string e será transformado em VingadoresDTO
+
+        var vingadoresDTO = objectMapper.writeValueAsString(VINGADORES_DTO);
+
+        // Mock do resultado completo da requisição
 
         var withSuccess = MockRestResponseCreators.withSuccess(vingadoresDTO, MediaType.APPLICATION_JSON);
 
         server.expect(requestTo).andRespond(withSuccess);
 
-        Assertions.assertThat(vingadores.buscarCodinomes())
+        Assertions.assertThat(vingadoresRepository.buscarCodinomes())
                 .isNotEmpty()
                 .isNotNull()
                 .isEqualTo(LIST_OF_CODINOMES_VINGADORES);
