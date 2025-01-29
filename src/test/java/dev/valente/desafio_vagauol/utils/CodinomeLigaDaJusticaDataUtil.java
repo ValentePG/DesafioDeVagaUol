@@ -1,5 +1,6 @@
 package dev.valente.desafio_vagauol.utils;
 
+import dev.valente.desafio_vagauol.dto.justiceleague.LigaDaJusticaDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -24,6 +25,10 @@ public class CodinomeLigaDaJusticaDataUtil implements CodinomeInterface {
     public static final List<String> LIST_OF_CODINOMES_LIGA_DA_JUSTICA =
             new ArrayList<>(List.of("Batman", "Mulher Maravilha", "Flash"));
 
+    public static final LigaDaJusticaDTO LIGA_DA_JUSTICA_DTO = LigaDaJusticaDTO.builder()
+            .codinomes(LIST_OF_CODINOMES_LIGA_DA_JUSTICA)
+            .build();
+
     public static final String FIRST_CODINOME_OF_LIST_LIGA_DA_JUSTICA = LIST_OF_CODINOMES_LIGA_DA_JUSTICA.getFirst();
 
     @Override
@@ -35,4 +40,5 @@ public class CodinomeLigaDaJusticaDataUtil implements CodinomeInterface {
     public String getFirstCodinome() {
         return FIRST_CODINOME_OF_LIST_LIGA_DA_JUSTICA;
     }
+
 }

@@ -7,3 +7,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+external:
+  url: https://raw.githubusercontent.com/uolhost/test-backEnd-Java/master/referencias
+  uri-liga-da-justica: /qualquer.xml
+  uri-vingadores: /qualquer.json
