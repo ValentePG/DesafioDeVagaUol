@@ -1,0 +1,1 @@
+INSERT INTO tbl_jogador (nome, email, telefone, codinome, GRUPO_CODINOME) VALUES ('geovane', 'geovane@gmail.com', '30302230', 'Homem aranha', 'VINGADORES');
