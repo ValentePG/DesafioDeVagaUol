@@ -1,0 +1,4 @@
+INSERT INTO tbl_jogador (nome, email, telefone, codinome, GRUPO_CODINOME) VALUES ('gabriel', 'gabriel@gmail.com', '30377030', 'Hulk', 'VINGADORES');
+INSERT INTO tbl_jogador (nome, email, telefone, codinome, GRUPO_CODINOME) VALUES ('geovane', 'geovane@gmail.com', '30302230', 'Homem aranha', 'VINGADORES');
+INSERT INTO tbl_jogador (nome, email, telefone, codinome, GRUPO_CODINOME) VALUES ('jorge', 'jorge@gmail.com', '30344030', 'Batman', 'LIGA_DA_JUSTICA');
+INSERT INTO tbl_jogador (nome, email, telefone, codinome, GRUPO_CODINOME) VALUES ('jony', 'jony@gmail.com', '30366030', 'Flash', 'LIGA_DA_JUSTICA');
