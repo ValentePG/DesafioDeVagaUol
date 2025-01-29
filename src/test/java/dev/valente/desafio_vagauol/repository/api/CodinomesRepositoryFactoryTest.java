@@ -7,9 +7,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -38,11 +35,13 @@ class CodinomesRepositoryFactoryTest {
         Assertions.assertThat(codinomesRepository)
                 .isInstanceOf(LigaDaJusticaRepository.class);
     }
+
     @Test
     @DisplayName("create deve retornar uma instância de VingadoresRepository")
     @Order(2)
     void create_ShouldReturnInstanceOfVingadoresRepository() {
         CodinomesRepository codinomesRepository = codinomesRepositoryFactory.create(GrupoCodinome.VINGADORES);
+
         Assertions.assertThat(codinomesRepository)
                 .isInstanceOf(VingadoresRepository.class);
     }
