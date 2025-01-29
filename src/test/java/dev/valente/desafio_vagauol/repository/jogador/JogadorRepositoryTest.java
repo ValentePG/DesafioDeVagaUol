@@ -12,11 +12,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.jdbc.Sql;
 
+import java.util.Objects;
 import java.util.stream.Stream;
 
-import static dev.valente.desafio_vagauol.utils.JogadorVingadoresDataUtil.EMAIL_FROM_JOGADOR;
+import static dev.valente.desafio_vagauol.utils.JogadorVingadoresDataUtil.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -124,4 +126,36 @@ class JogadorRepositoryTest {
 
         log.info("Jogador não encontrado");
     }
+
+    @Test
+    @DisplayName("save deve salvar e retornar jogador salvo")
+    @Order(5)
+    @Sql(value = "/sql/drop_jogadores.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    void save_ShouldSaveJogador_WhenSuccessfull() {
+
+        log.info("Deve salvar jogador {}", JOGADOR_TO_SAVE_WITH_CODINOME);
+        var sut = jogadorRepository.save(JOGADOR_TO_SAVE_WITH_CODINOME);
+
+        Assertions.assertThat(sut)
+                .hasNoNullFieldsOrProperties()
+                .hasFieldOrProperty("id")
+                .matches(a -> Objects.equals(a.getCodinome(), "Hulk"));
+    }
+
+    @Test
+    @DisplayName("save deve retornar um erro quando o email do jogador a ser salvo já está registrado no sistema")
+    @Order(6)
+    @Sql(value = "/sql/init_one_jogador.sql")
+    @Sql(value = "/sql/drop_jogadores.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    void save_ShouldReturnError_WhenFieldsAreDuplicated() {
+
+        log.info("Deve salvar jogador {}", OTHER_JOGADOR_TO_SAVE_WITH_CODINOME);
+
+        Assertions.assertThatThrownBy(() -> jogadorRepository.save(OTHER_JOGADOR_TO_SAVE_WITH_CODINOME))
+                .isInstanceOf(DataIntegrityViolationException.class);
+
+        log.info("Codinome e email do jogador a ser salvo, já estão registrados no sistema");
+    }
+
+
 }
