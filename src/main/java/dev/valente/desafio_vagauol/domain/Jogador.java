@@ -3,8 +3,6 @@ package dev.valente.desafio_vagauol.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.print.attribute.standard.MediaSize;
-
 @ToString
 @Getter
 @Setter

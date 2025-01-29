@@ -5,9 +5,13 @@ import dev.valente.desafio_vagauol.domain.Jogador;
 
 public interface JogadorInterface {
 
-     Jogador getJogadorToSave();
-     Jogador getJogadorSavedWithId();
-     String getEmailFromJogador();
-     Long getIdFromJogador();
-     GrupoCodinome getGrupoCodinomeFromJogador();
+    Jogador getJogadorToSave();
+
+    Jogador getJogadorSavedWithId();
+
+    String getEmailFromJogador();
+
+    Long getIdFromJogador();
+
+    GrupoCodinome getGrupoCodinomeFromJogador();
 }

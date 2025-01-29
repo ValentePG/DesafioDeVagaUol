@@ -11,8 +11,8 @@ public class JogadorVingadoresDataUtil implements JogadorInterface {
 
     private static JogadorVingadoresDataUtil instance;
 
-    public static JogadorVingadoresDataUtil getInstance(){
-        if(Objects.isNull(instance)){
+    public static JogadorVingadoresDataUtil getInstance() {
+        if (Objects.isNull(instance)) {
             instance = new JogadorVingadoresDataUtil();
         }
         return instance;

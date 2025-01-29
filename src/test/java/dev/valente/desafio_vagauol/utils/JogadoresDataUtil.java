@@ -13,8 +13,8 @@ public class JogadoresDataUtil {
 
     private static JogadoresDataUtil instance;
 
-    public static JogadoresDataUtil getInstance(){
-        if(Objects.isNull(instance)){
+    public static JogadoresDataUtil getInstance() {
+        if (Objects.isNull(instance)) {
             instance = new JogadoresDataUtil();
         }
         return instance;
@@ -57,7 +57,7 @@ public class JogadoresDataUtil {
             .build();
 
     public static final List<Jogador> LIST_OF_JOGADORES =
-            new ArrayList<>(List.of(JOGADOR1,JOGADOR2,JOGADOR3,JOGADOR4));
+            new ArrayList<>(List.of(JOGADOR1, JOGADOR2, JOGADOR3, JOGADOR4));
 
     public List<Jogador> getListOfJogadores() {
         return LIST_OF_JOGADORES;

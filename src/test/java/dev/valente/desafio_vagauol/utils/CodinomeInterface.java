@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface CodinomeInterface {
 
-    public List<String> getListOfCodinomes();
-    public String getFirstCodinome();
+    List<String> getListOfCodinomes();
+
+    String getFirstCodinome();
 }

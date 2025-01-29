@@ -1,9 +1,9 @@
 package dev.valente.desafio_vagauol.mapper;
 
+import dev.valente.desafio_vagauol.domain.Jogador;
 import dev.valente.desafio_vagauol.dto.jogador.JogadorGetResponse;
 import dev.valente.desafio_vagauol.dto.jogador.JogadorPostRequest;
 import dev.valente.desafio_vagauol.dto.jogador.JogadorPostResponse;
-import dev.valente.desafio_vagauol.domain.Jogador;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

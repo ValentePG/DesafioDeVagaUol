@@ -11,8 +11,8 @@ public class JogadorLigaDaJusticaDataUtil implements JogadorInterface {
 
     private static JogadorLigaDaJusticaDataUtil instance;
 
-    public static JogadorLigaDaJusticaDataUtil getInstance(){
-        if(Objects.isNull(instance)){
+    public static JogadorLigaDaJusticaDataUtil getInstance() {
+        if (Objects.isNull(instance)) {
             instance = new JogadorLigaDaJusticaDataUtil();
         }
         return instance;

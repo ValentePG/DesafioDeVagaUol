@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<ApiError> handleNotFoundException(NotFoundException e,
-                                                                  HttpServletRequest request) {
+                                                            HttpServletRequest request) {
         var response = ApiError.builder()
                 .timestamp(OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME))
                 .statusCode(HttpStatus.NOT_FOUND.value())
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<ApiError> handleSqlIntegrityException(SQLIntegrityConstraintViolationException e,
-                                                            HttpServletRequest request) {
+                                                                HttpServletRequest request) {
         var response = ApiError.builder()
                 .timestamp(OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME))
                 .statusCode(HttpStatus.BAD_REQUEST.value())
@@ -72,7 +72,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(EmailAlreadyExist.class)
     public ResponseEntity<ApiError> handleEmailAlreadyExist(EmailAlreadyExist e,
-                                                                HttpServletRequest request) {
+                                                            HttpServletRequest request) {
         var response = ApiError.builder()
                 .timestamp(OffsetDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME))
                 .statusCode(HttpStatus.BAD_REQUEST.value())

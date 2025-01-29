@@ -5,7 +5,10 @@ import dev.valente.desafio_vagauol.repository.api.CodinomesRepository;
 import dev.valente.desafio_vagauol.repository.api.CodinomesRepositoryFactory;
 import dev.valente.desafio_vagauol.utils.*;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -83,7 +86,7 @@ class CodinomeServiceTest {
         BDDMockito.when(codinomesRepository.buscarCodinomes()).thenReturn(listOfCodinomes);
 
         Assertions.assertThatException()
-                .isThrownBy(() ->  codinomeService.gerarCodinome(grupoCodinome,
+                .isThrownBy(() -> codinomeService.gerarCodinome(grupoCodinome,
                         listOfCodinomes))
                 .withMessage("404 NOT_FOUND \"Não há codinomes disponíveis para o grupo %s\""
                         .formatted(nomeDoGrupo))

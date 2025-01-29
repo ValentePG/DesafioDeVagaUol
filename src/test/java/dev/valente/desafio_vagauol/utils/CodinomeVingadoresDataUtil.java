@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
-public class CodinomeVingadoresDataUtil implements CodinomeInterface{
+public class CodinomeVingadoresDataUtil implements CodinomeInterface {
 
     private static CodinomeVingadoresDataUtil instance;
 
-    public static CodinomeVingadoresDataUtil getInstance(){
-        if(Objects.isNull(instance)){
+    public static CodinomeVingadoresDataUtil getInstance() {
+        if (Objects.isNull(instance)) {
             instance = new CodinomeVingadoresDataUtil();
         }
         return instance;

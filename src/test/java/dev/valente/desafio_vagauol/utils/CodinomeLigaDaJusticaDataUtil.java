@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
-public class CodinomeLigaDaJusticaDataUtil implements CodinomeInterface{
+public class CodinomeLigaDaJusticaDataUtil implements CodinomeInterface {
 
     private static CodinomeLigaDaJusticaDataUtil instance;
 
-    public static CodinomeLigaDaJusticaDataUtil getInstance(){
-        if(Objects.isNull(instance)){
+    public static CodinomeLigaDaJusticaDataUtil getInstance() {
+        if (Objects.isNull(instance)) {
             instance = new CodinomeLigaDaJusticaDataUtil();
         }
         return instance;
