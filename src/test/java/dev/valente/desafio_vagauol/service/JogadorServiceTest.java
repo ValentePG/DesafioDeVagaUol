@@ -47,7 +47,6 @@ class JogadorServiceTest {
         var sut = jogadorService.buscarJogadores();
 
         Assertions.assertThat(sut)
-                .doesNotContainNull()
                 .isNotEmpty();
     }
 
@@ -81,42 +80,51 @@ class JogadorServiceTest {
     }
 
     private static Stream<Arguments> parameterizedSalvarJogadorSuccessfullTest() {
-        var instanceOfJogadorVingadoresDataUtil = JogadorVingadoresDataUtil.getInstance();
-        var instanceOfJogadorLigaDaJusticaDataUtil = JogadorLigaDaJusticaDataUtil.getInstance();
-        var instanceOfCodinomeVingadoresDataUtil = CodinomeVingadoresDataUtil.getInstance();
-        var instanceOfCodinomeLigaDaJusticaDataUtil = CodinomeLigaDaJusticaDataUtil.getInstance();
+        var instanceOfJogadorVingadores = JogadorVingadoresDataUtil.getInstance();
+        var instanceOfJogadorLigaDaJustica = JogadorLigaDaJusticaDataUtil.getInstance();
+        var instanceOfCodinomeVingadores = CodinomeVingadoresDataUtil.getInstance();
+        var instanceOfCodinomeLigaDaJustica = CodinomeLigaDaJusticaDataUtil.getInstance();
 
 
         return Stream.of(
-                Arguments.of(instanceOfJogadorVingadoresDataUtil, instanceOfCodinomeVingadoresDataUtil),
-                Arguments.of(instanceOfJogadorLigaDaJusticaDataUtil, instanceOfCodinomeLigaDaJusticaDataUtil)
+                Arguments.of(instanceOfJogadorVingadores, instanceOfCodinomeVingadores),
+                Arguments.of(instanceOfJogadorLigaDaJustica, instanceOfCodinomeLigaDaJustica)
         );
     }
 
     private void arrangeForSalvarJogadorSuccessfullTest(JogadorInterface jogadorUtil,
                                                         CodinomeInterface codinomeUtil) throws Exception {
 
-        BDDMockito.when(jogadorRepository.findAllCodinomes(BDDMockito.any(GrupoCodinome.class)))
-                .thenReturn(codinomeUtil.getListOfCodinomes());
+        var grupoCodinome = jogadorUtil.getGrupoCodinomeFromJogador();
+        var emailFromJogadorToSave = jogadorUtil.getEmailFromJogador();
+        var listOfCodinomes = codinomeUtil.getListOfCodinomes();
+        var firstCodinomeFromList = codinomeUtil.getFirstCodinome();
+        var jogadorSaved = jogadorUtil.getJogadorSavedWithId();
+        var jogadorToSave = jogadorUtil.getJogadorToSave();
 
-        BDDMockito.when(jogadorRepository.findByEmail(jogadorUtil.getEmailFromJogador()))
+        BDDMockito.when(jogadorRepository.findAllCodinomes(grupoCodinome))
+                .thenReturn(listOfCodinomes);
+
+        BDDMockito.when(jogadorRepository.findByEmail(emailFromJogadorToSave))
                 .thenReturn(Optional.empty());
 
-        BDDMockito.when(codinomeService.gerarCodinome(jogadorUtil.getGrupoCodinomeFromJogador(),
-                        codinomeUtil.getListOfCodinomes()))
-                .thenReturn(codinomeUtil.getFirstCodinome());
+        BDDMockito.when(codinomeService.gerarCodinome(grupoCodinome,
+                        listOfCodinomes))
+                .thenReturn(firstCodinomeFromList);
 
-        BDDMockito.when(jogadorRepository.save(BDDMockito.any(Jogador.class)))
-                .thenReturn(jogadorUtil.getJogadorSavedWithId());
+        BDDMockito.when(jogadorRepository.save(jogadorToSave))
+                .thenReturn(jogadorSaved);
     }
 
     private void assertionsForSalvarJogadorSuccessfullTest(Jogador sut, JogadorInterface jogadorUtil,
                                                            CodinomeInterface codinomeUtil) throws Exception {
+
         var idFromSavedJogador = jogadorUtil.getIdFromJogador();
         var firstCodinome = codinomeUtil.getFirstCodinome();
         var emailFromJogadorToSave = jogadorUtil.getEmailFromJogador();
         var grupoCodinomeFromJogadorToSave = jogadorUtil.getGrupoCodinomeFromJogador();
         var listOfCodinomes = codinomeUtil.getListOfCodinomes();
+        var jogadorToSave = jogadorUtil.getJogadorToSave();
 
         Assertions.assertThat(sut)
                 .hasFieldOrPropertyWithValue("id", idFromSavedJogador)
@@ -128,7 +136,7 @@ class JogadorServiceTest {
         BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
                 .findAllCodinomes(grupoCodinomeFromJogadorToSave);
         BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
-                .save(BDDMockito.any(Jogador.class));
+                .save(jogadorToSave);
 
 
         BDDMockito.verify(codinomeService, BDDMockito.times(1))

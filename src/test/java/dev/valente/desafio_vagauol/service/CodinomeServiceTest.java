@@ -59,13 +59,13 @@ class CodinomeServiceTest {
     }
 
     private static Stream<Arguments> parameterizedGerarCodinomeWhenSuccessfull() {
-        var instance = CodinomeVingadoresDataUtil.getInstance();
-        var instance2 = CodinomeLigaDaJusticaDataUtil.getInstance();
-        var instance3 = JogadorLigaDaJusticaDataUtil.getInstance();
-        var instance4 = JogadorVingadoresDataUtil.getInstance();
+        var instanceCodinomeVingadores = CodinomeVingadoresDataUtil.getInstance();
+        var instanceCodinomeLigaDaJustica = CodinomeLigaDaJusticaDataUtil.getInstance();
+        var instanceJogadorLigaDaJustica = JogadorLigaDaJusticaDataUtil.getInstance();
+        var instanceJogadorVingadores = JogadorVingadoresDataUtil.getInstance();
         return Stream.of(
-                Arguments.of(instance, instance4),
-                Arguments.of(instance2, instance3)
+                Arguments.of(instanceCodinomeVingadores, instanceJogadorVingadores),
+                Arguments.of(instanceCodinomeLigaDaJustica, instanceJogadorLigaDaJustica)
         );
     }
 
@@ -94,13 +94,13 @@ class CodinomeServiceTest {
     }
 
     private static Stream<Arguments> parameterizedGerarCodinomeWhenAllCodinomesAreUsed() {
-        var instance = CodinomeVingadoresDataUtil.getInstance();
-        var instance2 = CodinomeLigaDaJusticaDataUtil.getInstance();
-        var instance3 = JogadorLigaDaJusticaDataUtil.getInstance();
-        var instance4 = JogadorVingadoresDataUtil.getInstance();
+        var instanceCodinomeVingadores = CodinomeVingadoresDataUtil.getInstance();
+        var instanceCodinomeLigaDaJustica = CodinomeLigaDaJusticaDataUtil.getInstance();
+        var instanceJogadorLigaDaJustica = JogadorLigaDaJusticaDataUtil.getInstance();
+        var instanceJogadorVingadores = JogadorVingadoresDataUtil.getInstance();
         return Stream.of(
-                Arguments.of(instance, instance4),
-                Arguments.of(instance2, instance3)
+                Arguments.of(instanceCodinomeVingadores, instanceJogadorVingadores),
+                Arguments.of(instanceCodinomeLigaDaJustica, instanceJogadorLigaDaJustica)
         );
     }
 }
