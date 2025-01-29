@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static dev.valente.desafio_vagauol.utils.JogadorVingadoresDataUtil.EMAIL_FROM_JOGADOR_TO_SAVE;
+import static dev.valente.desafio_vagauol.utils.JogadorVingadoresDataUtil.EMAIL_FROM_JOGADOR;
 import static dev.valente.desafio_vagauol.utils.JogadorVingadoresDataUtil.JOGADOR_TO_SAVE;
 import static dev.valente.desafio_vagauol.utils.JogadoresDataUtil.LIST_OF_JOGADORES;
 
@@ -41,7 +41,7 @@ class JogadorServiceTest {
     @Test
     @DisplayName("buscarJogadores deve retornar uma lista de jogadores registrados")
     @Order(1)
-    void buscarJogadores_shouldReturnRegisteredJogadores_WhenIsNotEmpty() {
+    void buscarJogadores_ShouldReturnRegisteredJogadores_WhenIsNotEmpty() {
         BDDMockito.when(jogadorRepository.findAll()).thenReturn(LIST_OF_JOGADORES);
 
         var sut = jogadorService.buscarJogadores();
@@ -54,7 +54,7 @@ class JogadorServiceTest {
     @Test
     @DisplayName("buscarJogadores deve retornar uma lista vazia quando não houver jogadores registrados")
     @Order(2)
-    void buscarJogadores_shouldReturnEmptyList_WhenDoesNotHaveAnyoneRegistered() {
+    void buscarJogadores_ShouldReturnEmptyList_WhenDoesNotHaveAnyoneRegistered() {
         BDDMockito.when(jogadorRepository.findAll()).thenReturn(Collections.emptyList());
 
         var sut = jogadorService.buscarJogadores();
@@ -67,7 +67,7 @@ class JogadorServiceTest {
     @MethodSource("parameterizedSalvarJogadorSuccessfullTest")
     @DisplayName("salvarJogador deve salvar e retornar o jogador salvo")
     @Order(3)
-    void salvarJogador_shouldSaveAndReturnJogador_WhenSuccessfull(JogadorInterface jogadorUtil,
+    void salvarJogador_ShouldSaveAndReturnJogador_WhenSuccessfull(JogadorInterface jogadorUtil,
                                                                   CodinomeInterface codinomeUtil) throws Exception {
 
         var jogadorToSave = jogadorUtil.getJogadorToSave();
@@ -140,10 +140,10 @@ class JogadorServiceTest {
     @Test
     @DisplayName("salvarJogador deve retornar exceção EmailAlreadyExists")
     @Order(4)
-    void salvarJogador_shouldReturnEmailAlreadyExists_WhenEmailWasFound() throws Exception {
+    void salvarJogador_ShouldReturnEmailAlreadyExists_WhenEmailWasFound() throws Exception {
 
         // Arrange
-        BDDMockito.when(jogadorRepository.findByEmail(EMAIL_FROM_JOGADOR_TO_SAVE))
+        BDDMockito.when(jogadorRepository.findByEmail(EMAIL_FROM_JOGADOR))
                 .thenReturn(Optional.of(JOGADOR_TO_SAVE));
 
         // Act / Asserts
@@ -153,7 +153,7 @@ class JogadorServiceTest {
                 .isInstanceOf(EmailAlreadyExist.class);
 
         BDDMockito.verify(jogadorRepository, BDDMockito.times(1))
-                .findByEmail(EMAIL_FROM_JOGADOR_TO_SAVE);
+                .findByEmail(EMAIL_FROM_JOGADOR);
 
         BDDMockito.verifyNoMoreInteractions(jogadorRepository, codinomeService);
 
@@ -164,7 +164,7 @@ class JogadorServiceTest {
     @MethodSource("parameterizedSalvarJogadorWhenListOfCodinomeIsEmpty")
     @DisplayName("salvarJogador deve retornar exceção NotFoundException")
     @Order(5)
-    void salvarJogador_shouldReturnNotFoundException_WhenListOfCodinomeIsEmpty(JogadorInterface jogadorUtil) throws Exception {
+    void salvarJogador_ShouldReturnNotFoundException_WhenListOfCodinomeIsEmpty(JogadorInterface jogadorUtil) throws Exception {
 
         var grupoCodinome = jogadorUtil.getGrupoCodinomeFromJogador();
         var nomeDoGrupo = jogadorUtil.getGrupoCodinomeFromJogador().getGroupName();

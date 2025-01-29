@@ -1,4 +1,4 @@
-package dev.valente.desafio_vagauol.dto.vingadoresdto;
+package dev.valente.desafio_vagauol.dto.vingadores;
 
 import java.util.List;
 

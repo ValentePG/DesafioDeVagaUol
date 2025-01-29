@@ -23,6 +23,7 @@ public class JogadorController {
     private final JogadorMapper jogadorMapper;
 
     @GetMapping
+
     public ResponseEntity<List<JogadorGetResponse>> buscarJogadores() {
         log.info("Fazendo busca por todos os jogadores");
 

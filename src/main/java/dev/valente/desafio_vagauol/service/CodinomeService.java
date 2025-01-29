@@ -3,7 +3,7 @@ package dev.valente.desafio_vagauol.service;
 
 import dev.valente.desafio_vagauol.domain.GrupoCodinome;
 import dev.valente.desafio_vagauol.exception.NotFoundException;
-import dev.valente.desafio_vagauol.repository.codinome.CodinomesRepositoryFactory;
+import dev.valente.desafio_vagauol.repository.api.CodinomesRepositoryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

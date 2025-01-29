@@ -1,8 +1,8 @@
 package dev.valente.desafio_vagauol.service;
 
 import dev.valente.desafio_vagauol.exception.NotFoundException;
-import dev.valente.desafio_vagauol.repository.codinome.CodinomesRepository;
-import dev.valente.desafio_vagauol.repository.codinome.CodinomesRepositoryFactory;
+import dev.valente.desafio_vagauol.repository.api.CodinomesRepository;
+import dev.valente.desafio_vagauol.repository.api.CodinomesRepositoryFactory;
 import dev.valente.desafio_vagauol.utils.*;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -52,6 +52,7 @@ class CodinomeServiceTest {
         Assertions.assertThat(sut)
                 .isIn(listOfCodinomes)
                 .isEqualTo(firstCodinomeOfList);
+
     }
 
     private static Stream<Arguments> parameterizedGerarCodinomeWhenSuccessfull() {

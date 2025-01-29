@@ -1,4 +1,4 @@
-package dev.valente.desafio_vagauol.repository.codinome;
+package dev.valente.desafio_vagauol.repository.api;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -3,3 +3,7 @@ spring:
     password: 3030
     url: jdbc:h2:mem:testedb
     username: gomes
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update

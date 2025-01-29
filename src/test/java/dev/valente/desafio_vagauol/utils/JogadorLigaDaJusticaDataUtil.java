@@ -37,9 +37,9 @@ public class JogadorLigaDaJusticaDataUtil implements JogadorInterface {
             .id(1L)
             .build();
 
-    public static final String EMAIL_FROM_JOGADOR_TO_SAVE = JOGADOR_TO_SAVE.getEmail();
-    public static final Long ID_FROM_JOGADOR_SAVED = JOGADOR_SAVED_WITH_ID.getId();
-    public static final GrupoCodinome GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE
+    public static final String EMAIL_FROM_JOGADOR = JOGADOR_TO_SAVE.getEmail();
+    public static final Long ID_FROM_JOGADOR = JOGADOR_SAVED_WITH_ID.getId();
+    public static final GrupoCodinome GRUPO_CODINOME_FROM_JOGADOR
             = JOGADOR_TO_SAVE.getGrupoCodinome();
 
     @Override
@@ -54,16 +54,16 @@ public class JogadorLigaDaJusticaDataUtil implements JogadorInterface {
 
     @Override
     public String getEmailFromJogador() {
-        return EMAIL_FROM_JOGADOR_TO_SAVE;
+        return EMAIL_FROM_JOGADOR;
     }
 
     @Override
     public Long getIdFromJogador() {
-        return ID_FROM_JOGADOR_SAVED;
+        return ID_FROM_JOGADOR;
     }
 
     @Override
     public GrupoCodinome getGrupoCodinomeFromJogador() {
-        return GRUPO_CODINOME_FROM_JOGADOR_TO_SAVE;
+        return GRUPO_CODINOME_FROM_JOGADOR;
     }
 }

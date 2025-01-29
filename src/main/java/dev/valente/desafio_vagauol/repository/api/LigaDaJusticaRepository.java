@@ -3,7 +3,6 @@ package dev.valente.desafio_vagauol.repository.api;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import dev.valente.desafio_vagauol.dto.justiceleague.LigaDaJusticaDTO;
-import dev.valente.desafio_vagauol.repository.codinome.CodinomesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestClient;
