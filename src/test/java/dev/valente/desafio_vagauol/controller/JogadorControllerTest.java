@@ -2,13 +2,16 @@ package dev.valente.desafio_vagauol.controller;
 
 import dev.valente.desafio_vagauol.domain.GrupoCodinome;
 import dev.valente.desafio_vagauol.domain.Jogador;
-import dev.valente.desafio_vagauol.repository.api.CodinomesRepository;
+import dev.valente.desafio_vagauol.exception.EmailAlreadyExist;
 import dev.valente.desafio_vagauol.repository.api.CodinomesRepositoryFactory;
 import dev.valente.desafio_vagauol.repository.api.LigaDaJusticaRepository;
 import dev.valente.desafio_vagauol.repository.api.VingadoresRepository;
 import dev.valente.desafio_vagauol.repository.jogador.JogadorRepository;
+import dev.valente.desafio_vagauol.service.JogadorService;
 import dev.valente.desafio_vagauol.utils.*;
 import dev.valente.desafio_vagauol.utils.fileutils.FileUtils;
+import net.javacrumbs.jsonunit.assertj.JsonAssertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -20,12 +23,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static dev.valente.desafio_vagauol.utils.JogadoresDataUtil.LIST_OF_JOGADORES;
@@ -50,6 +55,9 @@ class JogadorControllerTest {
     @MockitoBean
     private JogadorRepository jogadorRepository;
 
+    @MockitoSpyBean
+    private JogadorService jogadorService;
+
     @MockitoBean
     private CodinomesRepositoryFactory factory;
 
@@ -58,6 +66,7 @@ class JogadorControllerTest {
 
     @MockitoBean
     private LigaDaJusticaRepository ligaDaJusticaRepository;
+
 
     @Test
     @DisplayName("buscarJogadores deve retornar lista de jogadores quando houver dados registrados no sistema")
@@ -142,5 +151,54 @@ class JogadorControllerTest {
             Arguments.of(instanceOfCodinomeLigaDaJusticaUtil,instanceOfJogadorLigaDaJusticaUtil,
                     requestPathForLigaDaJustica, responsePathFromFileForLigaDaJustica)
         );
+    }
+
+    @Test
+    @DisplayName("criarJogador deve retornar EmailAlreadyExist quando o email a ser salvo já existe no sistema")
+    @Order(4)
+    void criarJogador_ShouldReturnEmailAlreadyExist_WhenEmailAlreadyExist() throws Exception {
+
+        var emailAlreadyExist = new EmailAlreadyExist("Email já cadastrado no sistema");
+        var request = fileUtils.readFile("/http/post/post_criarjogadorvingadores_200.json");
+        var responseFromFile = fileUtils.readFile("/http/post/post_criarjogador_response_withexistentemail_400.json");
+
+        BDDMockito.doThrow(emailAlreadyExist)
+                .when(jogadorService).salvarJogador(BDDMockito.any(Jogador.class));
+
+
+        var response = mockMvc.perform(MockMvcRequestBuilders.post(URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn().getResponse().getContentAsString();
+
+        JsonAssertions.assertThatJson(response)
+                .whenIgnoringPaths("timestamp")
+                .isEqualTo(responseFromFile);
+    }
+
+    @Test
+    @DisplayName("criarJogador deve retornar BAD REQUEST quando os dados de entrada estiverem inválidos")
+    @Order(5)
+    void criarJogador_ShouldReturnBadRequest_WhenHasInvalidData() throws Exception {
+
+        var request = fileUtils.readFile("/http/post/post_criarjogador_request_withinvaliddata_400.json");
+        var responseFromFile = fileUtils.readFile("/http/post/post_criarjogador_response_withinvaliddata_400.json");
+        var listOfErrors = List.of("Email inválido", "Email não pode estar em branco",
+                "O campo nome não pode estar em branco");
+
+        var response = mockMvc.perform(MockMvcRequestBuilders.post(URL)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(request))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn().getResponse().getContentAsString();
+
+        JsonAssertions.assertThatJson(response)
+                .whenIgnoringPaths("timestamp")
+                .isEqualTo(responseFromFile);
+
+        listOfErrors.forEach(s -> Assertions.assertThat(response).contains(s));
     }
 }

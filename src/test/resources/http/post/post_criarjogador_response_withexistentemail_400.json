@@ -1,0 +1,1 @@
+{"timestamp":"2025-01-30T19:26:08.8563957-03:00","statusCode":400,"error":"Bad Request","message":"Email já cadastrado no sistema","path":"/v1/jogadores"}

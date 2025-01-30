@@ -1,0 +1,1 @@
+{"timestamp":"2025-01-30T19:45:41.3124295-03:00","statusCode":400,"error":"Bad Request","message":"Email inválido, Email não pode estar em branco, O campo nome não pode estar em branco","path":"/v1/jogadores"}
