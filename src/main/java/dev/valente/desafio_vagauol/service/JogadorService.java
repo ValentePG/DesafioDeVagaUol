@@ -4,10 +4,12 @@ import dev.valente.desafio_vagauol.domain.Jogador;
 import dev.valente.desafio_vagauol.exception.EmailAlreadyExist;
 import dev.valente.desafio_vagauol.repository.jogador.JogadorRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class JogadorService {

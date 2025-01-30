@@ -59,8 +59,4 @@ public class JogadoresDataUtil {
     public static final List<Jogador> LIST_OF_JOGADORES =
             new ArrayList<>(List.of(JOGADOR1, JOGADOR2, JOGADOR3, JOGADOR4));
 
-    public List<Jogador> getListOfJogadores() {
-        return LIST_OF_JOGADORES;
-    }
-
 }

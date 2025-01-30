@@ -7,12 +7,9 @@ import jakarta.validation.constraints.NotBlank;
 public record JogadorPostRequest(
         @NotBlank(message = "O campo nome não pode estar em branco")
         String nome,
-
         @Email(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "Email inválido")
         @NotBlank(message = "Email não pode estar em branco")
         String email,
-
         String telefone,
-
         GrupoCodinome grupoCodinome) {
 }

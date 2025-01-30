@@ -23,7 +23,6 @@ public class JogadorController {
     private final JogadorMapper jogadorMapper;
 
     @GetMapping
-
     public ResponseEntity<List<JogadorGetResponse>> buscarJogadores() {
         log.info("Fazendo busca por todos os jogadores");
 
@@ -34,12 +33,10 @@ public class JogadorController {
 
     @PostMapping
     public ResponseEntity<JogadorPostResponse> criarJogador(@RequestBody @Valid JogadorPostRequest jogador) throws Exception {
-        log.debug("Salvando jogador '{}'", jogador);
+        log.info("Salvando jogador '{}'", jogador);
 
         var novoJogador = jogadorMapper.toJogador(jogador);
-
         var novoJogadorSalvo = jogadorService.salvarJogador(novoJogador);
-
         var postResponse = jogadorMapper.toJogadorPostResponse(novoJogadorSalvo);
 
         return ResponseEntity.status(201).body(postResponse);
