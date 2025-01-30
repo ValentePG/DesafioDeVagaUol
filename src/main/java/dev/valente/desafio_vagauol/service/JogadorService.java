@@ -24,6 +24,7 @@ public class JogadorService {
     public Jogador salvarJogador(Jogador jogador) throws Exception {
         assertEmailDoesNotExist(jogador);
         gerarCodinome(jogador);
+        log.info("'{}'", jogador);
         return jogadoresRepository.save(jogador);
     }
 
