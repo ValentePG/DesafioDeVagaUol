@@ -1,10 +1,10 @@
-Se quiser a descrição do desafio está neste repositório aqui [desafioVagaUol](https://github.com/uolhost/test-backEnd-Java)
-
-Para rodar a aplicação certifique-se de que tenha o maven e o java instalados na sua máquina
+# Descrição do desafio está neste repositório aqui [desafioVagaUol](https://github.com/uolhost/test-backEnd-Java)
 
 📌 Desafio de vaga Uol Host
 
-Breve descrição do projeto, explicando o que ele faz e seu propósito.
+Basicamente um programa que permite a criação de um jogador e busca por jogadores registrados.
+Baseado em sua escolha entre `Vingadores` e `Liga da justiça`, o sistema gera um `Codinome` (p.ex `Hulk` ou `Batman`) vindos de 2 arquivos estáticos externos (um xml e outro json) e o usuário é cadastrado com sucesso.
+Os Codinomes não podem se repetir.
 
 📦 Pré-requisitos
 
@@ -13,24 +13,24 @@ Antes de iniciar, certifique-se de que você tem os seguintes requisitos instala
 `Java 21+
 Maven 3.8+`
 
-Disclaimer: O maven wrapper está configurado para rodar mesmo sem uma instância do maven instalada, por precaução tenha o maven instalado.
+`Disclaimer: O maven wrapper está configurado para rodar mesmo sem uma instância do maven instalada, por precaução tenha o maven instalado.`
 
 🚀 Passo a passo para rodar o projeto
 
 1️⃣ Clonar o repositório
 
-`git clone https://github.com/ValentePG/DesafioDeVagaUol.git
-cd DesafioDeVagaUol`
+`git clone https://github.com/ValentePG/DesafioDeVagaUol.git`
+`cd DesafioDeVagaUol`
 
 2️⃣ Instalar dependências
 
-`./mvnw clean install  # Linux/macOS
-mvnw.cmd clean install  # Windows`
+`./mvnw clean install  # Linux/macOS`
+`mvnw.cmd clean install  # Windows`
 
 3️⃣ Rodar a aplicação
 
-`./mvnw spring-boot:run  # Linux/macOS
-mvnw.cmd spring-boot:run  # Windows`
+`./mvnw spring-boot:run  # Linux/macOS`
+`mvnw.cmd spring-boot:run  # Windows`
 
 Ou, caso prefira executar diretamente o JAR:
 
@@ -38,8 +38,8 @@ Ou, caso prefira executar diretamente o JAR:
 
 4️⃣ Acessar a API
 
-`API: http://localhost:8080
-Documentação Swagger: http://localhost:8080/swagger-ui.html`
+`API: http://localhost:8080`
+`Documentação Swagger: http://localhost:8080/swagger-ui.html`
 
 5️⃣ Rodar os testes (opcional)
 
@@ -47,8 +47,8 @@ Documentação Swagger: http://localhost:8080/swagger-ui.html`
 
 🛠️ Tecnologias Utilizadas
 
-`Java 21
-Spring Boot 3.4.2`
+`Java 21`
+`Spring Boot 3.4.2`
 
 📄 Licença
 
