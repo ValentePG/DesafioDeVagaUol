@@ -4,6 +4,8 @@ Basicamente um programa que permite a criação de um jogador e busca por jogado
 Baseado em sua escolha entre `Vingadores` e `Liga da justiça`, o sistema gera um `Codinome` (p.ex `Hulk` ou `Batman`) vindos de 2 arquivos estáticos externos (um xml e outro json) e o usuário é cadastrado com sucesso.
 Os Codinomes não podem se repetir.
 
+Descrição detalhada do desafio está [aqui](https://github.com/uolhost/test-backEnd-Java)
+
 # 📦 Pré-requisitos
 
 Antes de iniciar, certifique-se de que você tem os seguintes requisitos instalados:
