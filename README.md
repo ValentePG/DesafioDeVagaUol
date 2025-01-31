@@ -47,8 +47,8 @@ Documentação Swagger: http://localhost:8080/swagger-ui.html`
 
 🛠️ Tecnologias Utilizadas
 
-Java 21
-Spring Boot 3.4.2
+`Java 21
+Spring Boot 3.4.2`
 
 📄 Licença
 
