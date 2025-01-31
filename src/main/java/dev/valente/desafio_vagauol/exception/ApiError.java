@@ -10,7 +10,7 @@ import lombok.Setter;
 @Builder
 public class ApiError {
 
-    @Schema(description = "TimeStamp da exceção",example = "2025-01-30T21:54:43.653-03:00")
+    @Schema(description = "TimeStamp da exceção", example = "2025-01-30T21:54:43.653-03:00")
     private String timestamp;
     @Schema(description = "Status code da exceção", example = "400")
     private int statusCode;
