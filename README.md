@@ -1,35 +1,33 @@
-# Descrição do desafio está neste repositório aqui [desafioVagaUol](https://github.com/uolhost/test-backEnd-Java)
-
-📌 Desafio de vaga Uol Host
+# 📌 Desafio de vaga Uol Host
 
 Basicamente um programa que permite a criação de um jogador e busca por jogadores registrados.
 Baseado em sua escolha entre `Vingadores` e `Liga da justiça`, o sistema gera um `Codinome` (p.ex `Hulk` ou `Batman`) vindos de 2 arquivos estáticos externos (um xml e outro json) e o usuário é cadastrado com sucesso.
 Os Codinomes não podem se repetir.
 
-📦 Pré-requisitos
+# 📦 Pré-requisitos
 
 Antes de iniciar, certifique-se de que você tem os seguintes requisitos instalados:
 
-`Java 21+
-Maven 3.8+`
+`Java 21+`
+`Maven 3.8+`
 
-`Disclaimer: O maven wrapper está configurado para rodar mesmo sem uma instância do maven instalada, por precaução tenha o maven instalado.`
+**Disclaimer: O maven wrapper está configurado para rodar mesmo sem uma instância do maven instalada, oque permite que os comandos listados abaixo funcionem, porém por precaução tenha o maven instalado.**
 
-🚀 Passo a passo para rodar o projeto
+# 🚀 Passo a passo para rodar o projeto
 
 1️⃣ Clonar o repositório
 
-`git clone https://github.com/ValentePG/DesafioDeVagaUol.git`
+`git clone https://github.com/ValentePG/DesafioDeVagaUol.git`<br>
 `cd DesafioDeVagaUol`
 
 2️⃣ Instalar dependências
 
-`./mvnw clean install  # Linux/macOS`
+`./mvnw clean install  # Linux/macOS`<br>
 `mvnw.cmd clean install  # Windows`
 
 3️⃣ Rodar a aplicação
 
-`./mvnw spring-boot:run  # Linux/macOS`
+`./mvnw spring-boot:run  # Linux/macOS`<br>
 `mvnw.cmd spring-boot:run  # Windows`
 
 Ou, caso prefira executar diretamente o JAR:
@@ -38,14 +36,14 @@ Ou, caso prefira executar diretamente o JAR:
 
 4️⃣ Acessar a API
 
-`API: http://localhost:8080`
+`API: http://localhost:8080`<br>
 `Documentação Swagger: http://localhost:8080/swagger-ui.html`
 
 5️⃣ Rodar os testes (opcional)
 
 `./mvnw test`
 
-🛠️ Tecnologias Utilizadas
+# 🛠️ Tecnologias Utilizadas
 
 `Java 21`
 `Spring Boot 3.4.2`
