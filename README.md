@@ -13,6 +13,8 @@ Antes de iniciar, certifique-se de que você tem os seguintes requisitos instala
 `Java 21+
 Maven 3.8+`
 
+Disclaimer: O maven wrapper está configurado para rodar mesmo sem uma instância do maven instalada, por precaução tenha o maven instalado.
+
 🚀 Passo a passo para rodar o projeto
 
 1️⃣ Clonar o repositório
@@ -30,23 +32,22 @@ mvnw.cmd clean install  # Windows`
 `./mvnw spring-boot:run  # Linux/macOS
 mvnw.cmd spring-boot:run  # Windows`
 
-Ou, caso tenha gerado um JAR:
+Ou, caso prefira executar diretamente o JAR:
 
-`java -jar target/seuprojeto.jar`
+`java -jar target/desafio-vaga-uol-0.0.1-SNAPSHOT.jar`
 
 4️⃣ Acessar a API
 
 `API: http://localhost:8080
-Swagger: http://localhost:8080/swagger-ui.html`
+Documentação Swagger: http://localhost:8080/swagger-ui.html`
 
 5️⃣ Rodar os testes (opcional)
 
-./mvnw test  # Para Maven
+`./mvnw test`
 
 🛠️ Tecnologias Utilizadas
 
 Java 21
-
 Spring Boot 3.4.2
 
 📄 Licença
