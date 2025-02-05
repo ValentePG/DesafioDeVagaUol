@@ -9,7 +9,6 @@ spring:
     url: jdbc:h2:mem:proddb
     username: gomes
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: update
 
